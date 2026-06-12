@@ -50,11 +50,18 @@ Tes server
 ```
 
 ### POST /api/brands — Duplicate Name
-
 **Request:**
 ```json
 {
   "name": "Fender"
+}
+```
+**Response 409:**
+```json
+{
+  "success": false,
+  "message": "Nama Brand sudah digunakan",
+  "data": null
 }
 ```
 **Response 500:**
@@ -270,11 +277,18 @@ DELETE /api/brands/9999
 ```
 
 ### POST /api/categories — Duplicate Name
-
 **Request:**
 ```json
 {
   "name": "Electric"
+}
+```
+**Response 409:**
+```json
+{
+  "success": false,
+  "message": "Nama Category sudah digunakan",
+  "data": null
 }
 ```
 **Response 500:**
@@ -500,7 +514,6 @@ DELETE /api/categories/9999
 ```
 
 ### POST /api/guitars — Invalid brandId (FK Error)
-
 **Request:**
 ```json
 {
@@ -510,6 +523,14 @@ DELETE /api/categories/9999
   "stock": 5,
   "brandId": 9999,
   "categoryId": 1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Brand ID atau Category ID tidak ditemukan",
+  "data": null
 }
 ```
 **Response 500:**

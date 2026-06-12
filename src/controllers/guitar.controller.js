@@ -19,6 +19,15 @@ const createGuitar = async (req, res) => {
     });
   } catch (error) {
     console.error("Terjadi kesalahan saat membuat data Guitar:", error);
+
+    if (error.name === "SequelizeForeignKeyConstraintError") {
+      return res.status(400).json({
+        success: false,
+        message: "Brand ID atau Category ID tidak ditemukan",
+        data: null,
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Terjadi kesalahan saat membuat data Guitar",
@@ -73,6 +82,15 @@ const getGuitarById = async (req, res) => {
     });
   } catch (error) {
     console.error("Terjadi kesalahan saat mengambil data Gitar:", error);
+
+    if (error.name === "SequelizeDatabaseError") {
+      return res.status(400).json({
+        success: false,
+        message: "Format ID tidak valid",
+        data: null,
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Terjadi kesalahan saat mengambil data Gitar",
@@ -108,6 +126,15 @@ const updateGuitar = async (req, res) => {
     });
   } catch (error) {
     console.error("Terjadi kesalahan saat memperbarui data Gitar:", error);
+
+    if (error.name === "SequelizeForeignKeyConstraintError") {
+      return res.status(400).json({
+        success: false,
+        message: "Brand ID atau Category ID tidak ditemukan",
+        data: null,
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Terjadi kesalahan saat memperbarui data Gitar",
@@ -150,6 +177,20 @@ const reduceStockGuitar = async (req, res) => {
     });
   } catch (error) {
     console.error("Terjadi kesalahan saat mengurangi stok Gitar:", error);
+
+    if (
+      error.name === "SequelizeDatabaseError" &&
+      error.parent &&
+      (error.parent.code === "ER_LOCK_WAIT_TIMEOUT" ||
+        error.parent.code === "ER_LOCK_DEADLOCK")
+    ) {
+      return res.status(409).json({
+        success: false,
+        message: "Stok sedang digunakan, silakan coba lagi",
+        data: null,
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Terjadi kesalahan saat mengurangi stok Gitar",

@@ -24,6 +24,28 @@ npm test         # 49 unit test (3 suite)
 
 ---
 
+## Database Schema
+
+### Relasi Tabel
+
+```
+Brand (1) ─── (N) Guitar ─── (1) Category
+```
+
+| Tabel | Field | Tipe | Constraint |
+|-------|-------|------|------------|
+| **Brand** | id | INTEGER | PK, AUTO_INCREMENT |
+| | name | STRING | UNIQUE, NOT NULL |
+| **Category** | id | INTEGER | PK, AUTO_INCREMENT |
+| | name | STRING | UNIQUE, NOT NULL |
+| **Guitar** | id | INTEGER | PK, AUTO_INCREMENT |
+| | name | STRING | NOT NULL |
+| | description | TEXT | NOT NULL |
+| | price | FLOAT | NOT NULL |
+| | stock | INTEGER | NOT NULL |
+| | brandId | INTEGER | FK → Brands(id), ON DELETE RESTRICT, ON UPDATE CASCADE |
+| | categoryId | INTEGER | FK → Categories(id), ON DELETE RESTRICT, ON UPDATE CASCADE |
+
 
 ## Struktur Project
 
@@ -36,7 +58,7 @@ src/
   routes/           # Definisi route
   validations/      # Skema validasi Joi
   utils/db.js       # Konfigurasi database
-tests/              # 34 integration test (3 suite)
+tests/              # 49 integration test (3 suite)
 api/                # File REST Client + test report
 ```
 

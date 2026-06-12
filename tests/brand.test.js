@@ -30,8 +30,9 @@ describe("Brand API", () => {
       const res = await request(app).post("/api/brands").send({
         name: "Fender",
       });
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(409);
       expect(res.body.success).toBe(false);
+      expect(res.body.message).toBe("Nama Brand sudah digunakan");
     });
 
     it("should fail when name is empty", async () => {

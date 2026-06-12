@@ -11,6 +11,15 @@ const createCategory = async (req, res) => {
     });
   } catch (error) {
     console.error("Terjadi kesalahan saat membuat data Category:", error);
+
+    if (error.name === "SequelizeUniqueConstraintError") {
+      return res.status(409).json({
+        success: false,
+        message: "Nama Category sudah digunakan",
+        data: null,
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Terjadi kesalahan saat membuat data Category",
@@ -55,6 +64,15 @@ const getCategoryById = async (req, res) => {
     });
   } catch (error) {
     console.error("Terjadi kesalahan saat mengambil data Category:", error);
+
+    if (error.name === "SequelizeDatabaseError") {
+      return res.status(400).json({
+        success: false,
+        message: "Format ID tidak valid",
+        data: null,
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Terjadi kesalahan saat mengambil data Category",
@@ -84,6 +102,15 @@ const updateCategory = async (req, res) => {
     });
   } catch (error) {
     console.error("Terjadi kesalahan saat memperbarui data Category:", error);
+
+    if (error.name === "SequelizeUniqueConstraintError") {
+      return res.status(409).json({
+        success: false,
+        message: "Nama Category sudah digunakan",
+        data: null,
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Terjadi kesalahan saat memperbarui data Category",

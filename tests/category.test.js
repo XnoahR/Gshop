@@ -30,8 +30,9 @@ describe("Category API", () => {
       const res = await request(app).post("/api/categories").send({
         name: "Electric",
       });
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(409);
       expect(res.body.success).toBe(false);
+      expect(res.body.message).toBe("Nama Category sudah digunakan");
     });
 
     it("should fail when name is empty", async () => {

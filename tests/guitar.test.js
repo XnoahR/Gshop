@@ -47,8 +47,9 @@ describe("Guitar API", () => {
         brandId: 9999,
         categoryId,
       });
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(400);
       expect(res.body.success).toBe(false);
+      expect(res.body.message).toBe("Brand ID atau Category ID tidak ditemukan");
     });
 
     it("should fail when name is empty", async () => {
