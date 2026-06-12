@@ -3,7 +3,9 @@ import Category from "./Category.js";
 import Guitar from "./Guitar.js";
 
 Brand.hasMany(Guitar, {
-    foreignKey: "brandId"
+    foreignKey: "brandId",
+    onDelete: "RESTRICT",
+    onUpdate: "CASCADE"
 });
 
 Category.hasMany(Guitar, {
@@ -11,7 +13,9 @@ Category.hasMany(Guitar, {
 });
 
 Guitar.belongsTo(Brand, {
-    foreignKey: "brandId"
+    foreignKey: "brandId",
+    onDelete: "RESTRICT",
+    onUpdate: "CASCADE"
 });
 
 Guitar.belongsTo(Category, {
