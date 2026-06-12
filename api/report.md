@@ -3,11 +3,11 @@
 ## Summary
 
 | | Passed | Failed | Total |
-|---|---|---|---|
-| Brand | 10 | 0 | 10 |
-| Category | 10 | 0 | 10 |
-| Guitar | 14 | 0 | 14 |
-| **Total** | **34** | **0** | **34** |
+|---|---|---|---|---|
+| Brand | 13 | 0 | 13 |
+| Category | 13 | 0 | 13 |
+| Guitar | 21 | 0 | 21 |
+| **Total** | **47** | **0** | **47** |
 
 ---
 
@@ -62,6 +62,40 @@ Tes server
 {
   "success": false,
   "message": "Terjadi kesalahan saat membuat data Brand",
+  "data": null
+}
+```
+
+### POST /api/brands — Name Empty (Validation)
+
+**Request:**
+```json
+{
+  "name": ""
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "\"name\" is not allowed to be empty",
+  "data": null
+}
+```
+
+### POST /api/brands — Name Too Short (Validation)
+
+**Request:**
+```json
+{
+  "name": "Ab"
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Brand name must be at least 3 characters long",
   "data": null
 }
 ```
@@ -162,6 +196,23 @@ GET /api/brands/9999
 }
 ```
 
+### PUT /api/brands/:id — Empty Name (Validation)
+
+**Request:**
+```json
+{
+  "name": ""
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Brand name cannot be empty",
+  "data": null
+}
+```
+
 ### DELETE /api/brands/:id — Delete Brand
 
 **Request:**
@@ -231,6 +282,40 @@ DELETE /api/brands/9999
 {
   "success": false,
   "message": "Terjadi kesalahan saat membuat data Category",
+  "data": null
+}
+```
+
+### POST /api/categories — Name Empty (Validation)
+
+**Request:**
+```json
+{
+  "name": ""
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "\"name\" is not allowed to be empty",
+  "data": null
+}
+```
+
+### POST /api/categories — Name Too Short (Validation)
+
+**Request:**
+```json
+{
+  "name": "Ab"
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Category name must be at least 3 characters long",
   "data": null
 }
 ```
@@ -331,6 +416,23 @@ GET /api/categories/9999
 }
 ```
 
+### PUT /api/categories/:id — Empty Name (Validation)
+
+**Request:**
+```json
+{
+  "name": ""
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Category name cannot be empty",
+  "data": null
+}
+```
+
 ### DELETE /api/categories/:id — Delete Category
 
 **Request:**
@@ -415,6 +517,137 @@ DELETE /api/categories/9999
 {
   "success": false,
   "message": "Terjadi kesalahan saat membuat data Guitar",
+  "data": null
+}
+```
+
+### POST /api/guitars — Name Empty (Validation)
+
+**Request:**
+```json
+{
+  "name": "",
+  "price": 10000000,
+  "description": "A nice guitar description",
+  "stock": 5,
+  "brandId": 1,
+  "categoryId": 1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "\"name\" is not allowed to be empty",
+  "data": null
+}
+```
+
+### POST /api/guitars — Name Too Short (Validation)
+
+**Request:**
+```json
+{
+  "name": "Ab",
+  "price": 10000000,
+  "description": "A nice guitar description",
+  "stock": 5,
+  "brandId": 1,
+  "categoryId": 1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Guitar name must be at least 3 characters long",
+  "data": null
+}
+```
+
+### POST /api/guitars — Price Negative (Validation)
+
+**Request:**
+```json
+{
+  "name": "Telecaster",
+  "price": -1000,
+  "description": "A nice guitar description",
+  "stock": 5,
+  "brandId": 1,
+  "categoryId": 1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Price must be a positive number",
+  "data": null
+}
+```
+
+### POST /api/guitars — Description Too Short (Validation)
+
+**Request:**
+```json
+{
+  "name": "Telecaster",
+  "price": 10000000,
+  "description": "Short",
+  "stock": 5,
+  "brandId": 1,
+  "categoryId": 1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Description must be at least 10 characters long",
+  "data": null
+}
+```
+
+### POST /api/guitars — Stock Negative (Validation)
+
+**Request:**
+```json
+{
+  "name": "Telecaster",
+  "price": 10000000,
+  "description": "A nice guitar description",
+  "stock": -5,
+  "brandId": 1,
+  "categoryId": 1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Stock cannot be negative",
+  "data": null
+}
+```
+
+### POST /api/guitars — Brand ID Missing (Validation)
+
+**Request:**
+```json
+{
+  "name": "Telecaster",
+  "price": 10000000,
+  "description": "A nice guitar description",
+  "stock": 5,
+  "categoryId": 1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Brand ID is required",
   "data": null
 }
 ```
@@ -541,6 +774,23 @@ GET /api/guitars/9999
 {
   "success": false,
   "message": "Data Gitar tidak ditemukan",
+  "data": null
+}
+```
+
+### PUT /api/guitars/:id — Price Negative (Validation)
+
+**Request:**
+```json
+{
+  "price": -1
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Price must be a positive number",
   "data": null
 }
 ```

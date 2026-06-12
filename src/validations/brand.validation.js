@@ -19,7 +19,4 @@ const updateBrandSchema = Joi.object({
     }),
 });
 
-export {
-    CreateBrandSchema,
-    UpdateBrandSchema
-};
+export { createBrandSchema, updateBrandSchema };

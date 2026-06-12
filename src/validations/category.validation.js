@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const createBrandSchema = Joi.object({
+const createCategorySchema = Joi.object({
   name: Joi.string().trim().min(3).max(50).required().messages({
     "string.base": "Category name must be a string",
     "string.empty": "Category name is required",
@@ -10,7 +10,7 @@ const createBrandSchema = Joi.object({
   }),
 });
 
-const updateBrandSchema = Joi.object({
+const updateCategorySchema = Joi.object({
   name: Joi.string().trim().min(3).max(50).messages({
     "string.base": "Category name must be a string",
     "string.empty": "Category name cannot be empty",
@@ -19,4 +19,4 @@ const updateBrandSchema = Joi.object({
   }),
 });
 
-export { createBrandSchema, updateBrandSchema };
+export { createCategorySchema, updateCategorySchema };

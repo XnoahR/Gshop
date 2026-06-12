@@ -33,6 +33,24 @@ describe("Category API", () => {
       expect(res.status).toBe(500);
       expect(res.body.success).toBe(false);
     });
+
+    it("should fail when name is empty", async () => {
+      const res = await request(app).post("/api/categories").send({
+        name: "",
+      });
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+      expect(res.body.message).toContain("Category name is required");
+    });
+
+    it("should fail when name is too short", async () => {
+      const res = await request(app).post("/api/categories").send({
+        name: "Ab",
+      });
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+      expect(res.body.message).toContain("at least 3 characters");
+    });
   });
 
   describe("GET /api/categories", () => {
@@ -77,6 +95,15 @@ describe("Category API", () => {
       });
       expect(res.status).toBe(404);
       expect(res.body.success).toBe(false);
+    });
+
+    it("should fail when updating with empty name", async () => {
+      const res = await request(app).put(`/api/categories/${categoryId}`).send({
+        name: "",
+      });
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+      expect(res.body.message).toContain("Category name cannot be empty");
     });
   });
 
