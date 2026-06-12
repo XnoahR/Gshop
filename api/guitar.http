@@ -1,0 +1,51 @@
+@baseUrl = http://localhost:3000
+@brandId = 1
+@categoryId = 1
+@guitarId = 1
+
+########################################
+# Endpoint Guitar
+########################################
+
+### Membuat guitar baru
+POST {{baseUrl}}/api/guitars
+Content-Type: application/json
+
+{
+  "name": "Stratocaster",
+  "price": 25000000,
+  "description": "Classic electric guitar with versatile sound",
+  "stock": 10,
+  "brandId": {{brandId}},
+  "categoryId": {{categoryId}}
+}
+
+### Mengambil semua data guitar
+GET {{baseUrl}}/api/guitars
+
+### Mengambil data guitar berdasarkan id
+GET {{baseUrl}}/api/guitars/{{guitarId}}
+
+### Update data guitar
+PUT {{baseUrl}}/api/guitars/{{guitarId}}
+Content-Type: application/json
+
+{
+  "price": 22000000,
+  "stock": 15
+}
+
+### Menghapus guitar
+DELETE {{baseUrl}}/api/guitars/{{guitarId}}
+
+########################################
+# Stock Management
+########################################
+
+### Mengurangi stock guitar
+POST {{baseUrl}}/api/guitars/{{guitarId}}/reduce-stock
+Content-Type: application/json
+
+{
+  "quantity": 2
+}

@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000
+@categoryId = 1
+
+########################################
+# Endpoint Category
+########################################
+
+### Membuat category baru
+POST {{baseUrl}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Electric"
+}
+
+### Mengambil semua data category
+GET {{baseUrl}}/api/categories
+
+### Mengambil data category berdasarkan id
+GET {{baseUrl}}/api/categories/{{categoryId}}
+
+### Update data category
+PUT {{baseUrl}}/api/categories/{{categoryId}}
+Content-Type: application/json
+
+{
+  "name": "Acoustic"
+}
+
+### Menghapus category
+DELETE {{baseUrl}}/api/categories/{{categoryId}}

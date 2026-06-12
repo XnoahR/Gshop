@@ -1,0 +1,33 @@
+```http
+@baseUrl = http://localhost:3000
+@brandId = 1
+
+########################################
+# Endpoint Brand
+########################################
+
+### Membuat brand baru
+POST {{baseUrl}}/api/brands
+Content-Type: application/json
+
+{
+  "name": "Fender"
+}
+
+### Mengambil semua data brand
+GET {{baseUrl}}/api/brands
+
+### Mengambil data brand berdasarkan id
+GET {{baseUrl}}/api/brands/{{brandId}}
+
+### Update data brand
+PUT {{baseUrl}}/api/brands/{{brandId}}
+Content-Type: application/json
+
+{
+  "name": "Gibson"
+}
+
+### Hapus brand
+DELETE {{baseUrl}}/api/brands/{{brandId}}
+```
