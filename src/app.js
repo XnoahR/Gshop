@@ -13,9 +13,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", brandRoutes);
-app.use("/api", categoryRoutes);
-app.use("/api", guitarRoutes);
+app.use("/api/brands", brandRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/guitars", guitarRoutes);
 
 app.get("/health", (req, res) => {
   res.send("Tes server");

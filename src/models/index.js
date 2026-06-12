@@ -9,7 +9,9 @@ Brand.hasMany(Guitar, {
 });
 
 Category.hasMany(Guitar, {
-    foreignKey: "categoryId"
+    foreignKey: "categoryId",
+    onDelete: "RESTRICT",
+    onUpdate: "CASCADE"    
 });
 
 Guitar.belongsTo(Brand, {
@@ -19,7 +21,9 @@ Guitar.belongsTo(Brand, {
 });
 
 Guitar.belongsTo(Category, {
-    foreignKey: "categoryId"
+    foreignKey: "categoryId",
+    onDelete: "RESTRICT",
+    onUpdate: "CASCADE"
 });
 
 export {

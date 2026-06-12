@@ -5,11 +5,11 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/guitars", validate(createGuitarSchema), createGuitar);
-router.get("/guitars", getAllGuitars);
-router.get("/guitars/:id", getGuitarById);
-router.put("/guitars/:id", validate(updateGuitarSchema), updateGuitar);
-router.delete("/guitars/:id", deleteGuitar);
-router.post("/guitars/:id/reduce-stock", validate(reduceStockSchema), reduceStockGuitar);
+router.post("/", validate(createGuitarSchema), createGuitar);
+router.get("/", getAllGuitars);
+router.get("/:id", getGuitarById);
+router.put("/:id", validate(updateGuitarSchema), updateGuitar);
+router.delete("/:id", deleteGuitar);
+router.post("/:id/reduce-stock", validate(reduceStockSchema), reduceStockGuitar);
 
 export default router;
