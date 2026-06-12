@@ -1,6 +1,6 @@
 import { createGuitar, getAllGuitars, getGuitarById, reduceStockGuitar, updateGuitar, deleteGuitar } from "../controllers/guitar.controller.js";
 import { createGuitarSchema, updateGuitarSchema, reduceStockSchema } from "../validations/guitar.validation.js";
-import validate from "../middlewares/validate.js";
+import validate from "../middlewares/validate.middleware.js";
 import express from "express";
 
 const router = express.Router();

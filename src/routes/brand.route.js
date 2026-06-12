@@ -1,6 +1,6 @@
 import { createBrand, getAllBrands, getBrandById, updateBrand, deleteBrand } from "../controllers/brand.controller.js";
 import { createBrandSchema, updateBrandSchema } from "../validations/brand.validation.js";
-import validate from "../middlewares/validate.js";
+import validate from "../middlewares/validate.middleware.js";
 import express from "express";
 
 const router = express.Router();
