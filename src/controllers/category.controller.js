@@ -1,4 +1,4 @@
-import { Category, Guitar } from "../models/index.js";
+import { Category } from "../models/index.js";
 
 const createCategory = async (req, res) => {
   const { name } = req.body;

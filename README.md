@@ -9,7 +9,7 @@ git clone https://github.com/XnoahR/Gshop.git
 cd Gshop
 npm install
 npm start        # berjalan di port 3000
-npm test         # 34 unit test (3 suite)
+npm test         # 49 unit test (3 suite)
 ```
 ---
 

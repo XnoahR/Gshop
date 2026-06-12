@@ -6,8 +6,8 @@
 |---|---|---|---|---|
 | Brand | 13 | 0 | 13 |
 | Category | 13 | 0 | 13 |
-| Guitar | 21 | 0 | 21 |
-| **Total** | **47** | **0** | **47** |
+| Guitar | 23 | 0 | 23 |
+| **Total** | **49** | **0** | **49** |
 
 ---
 
@@ -835,6 +835,38 @@ GET /api/guitars/9999
 {
   "success": false,
   "message": "Stok tidak cukup",
+  "data": null
+}
+```
+
+### POST /api/guitars/:id/reduce-stock — Quantity Negative (Validation)
+
+**Request:**
+```json
+{
+  "quantity": -3
+}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Quantity must be at least 1",
+  "data": null
+}
+```
+
+### POST /api/guitars/:id/reduce-stock — Quantity Missing (Validation)
+
+**Request:**
+```json
+{}
+```
+**Response 400:**
+```json
+{
+  "success": false,
+  "message": "Quantity is required",
   "data": null
 }
 ```

@@ -217,6 +217,24 @@ describe("Guitar API", () => {
       expect(res.body.message).toBe("Stok tidak cukup");
     });
 
+    it("should fail when quantity is negative", async () => {
+      const res = await request(app)
+        .post(`/api/guitars/${guitarId}/reduce-stock`)
+        .send({ quantity: -3 });
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+      expect(res.body.message).toContain("Quantity must be at least 1");
+    });
+
+    it("should fail when quantity is missing", async () => {
+      const res = await request(app)
+        .post(`/api/guitars/${guitarId}/reduce-stock`)
+        .send({});
+      expect(res.status).toBe(400);
+      expect(res.body.success).toBe(false);
+      expect(res.body.message).toContain("Quantity is required");
+    });
+
     it("should return 404 for non-existent guitar", async () => {
       const res = await request(app)
         .post("/api/guitars/9999/reduce-stock")
